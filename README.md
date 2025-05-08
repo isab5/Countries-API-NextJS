@@ -1,36 +1,32 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🌍 Countries API - Next.js
 
-## Getting Started
+Este é um projeto criado com **Next.js** que consome a [REST Countries API](https://restcountries.com/) para exibir informações sobre países do mundo. Você pode visualizar detalhes de cada país, pesquisar por nome e filtrar por região.
 
-First, run the development server:
+## 🚀 Tecnologias Utilizadas
+
+- [Next.js](https://nextjs.org/)
+- [React](https://reactjs.org/)
+- [REST Countries API](https://restcountries.com/)
+- [React Toastify](https://fkhadra.github.io/react-toastify/)
+- CSS Modules
+
+## 📦 Instalação
+
+Siga os passos abaixo para rodar o projeto localmente:
 
 ```bash
+# 1. Clone o repositório
+git clone https://github.com/isab5/Countries-API-NextJS.git
+
+# 2. Acesse o diretório do projeto
+cd Countries-API-NextJS
+
+# 3. Instale as dependências
+npm install
+# ou
+yarn install
+
+# 4. Inicie o servidor de desenvolvimento
 npm run dev
-# or
+# ou
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
