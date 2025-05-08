@@ -2,10 +2,12 @@
 
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { Skeleton } from 'antd';
 
 import CountryCard from "../../components/CountryCard";
 import CountryModal from "../../components/CountryModal";
-import Loading from "../../components/Loading";
 import styles from "./Countries.module.css";
 
 const regions = ["africa", "americas", "antarctic", "asia", "europe", "oceania"];
@@ -35,20 +37,38 @@ export default function Countries() {
   };
 
   useEffect(() => {
-    fetchCountries();
+    const cachedCountries = sessionStorage.getItem("countries");
+    const cachedAll = sessionStorage.getItem("allCountries");
+    if (cachedCountries) {
+      setCountries(JSON.parse(cachedCountries));
+      if (cachedAll) setAllCountries(JSON.parse(cachedAll));
+      setIsLoading(false);
+    } else {
+      fetchCountries();
+    }
   }, []);
 
   const resetFilter = () => fetchCountries();
 
+  const handleButtonClick = (region) => {
+    fetchCountries(region);
+    toast.success(`Região selecionada: ${region}`);
+  };
+  
+  const handleButtonCountry = (country) => {
+    setSelectedCountry(country);
+    toast.success(`País selecionado: ${country.name.common}`);
+  };
   return (
     <div className={styles.container}>
+      <ToastContainer position="top-right" autoClose={4000} theme="light" />
       <h1>Lista de Países do Mundo</h1>
       <div>
         {regions.map((region) => (
           <button
             key={region}
             className={styles.button}
-            onClick={() => fetchCountries(region)}
+            onClick={() => handleButtonClick(region)}
           >
             {region.charAt(0).toUpperCase() + region.slice(1)}
           </button>
@@ -60,13 +80,17 @@ export default function Countries() {
 
       <div className={styles.cardContainer}>
         {isLoading ? (
-          <Loading />
+          Array.from({ length: 6 }).map((_, i) => (
+            <div key={i} className={styles.skeletonCard}>
+              <Skeleton active avatar paragraph={{ rows: 2 }} />
+            </div>
+          ))
         ) : (
           countries.map((country, index) => (
             <CountryCard
               key={index}
               country={country}
-              onClick={() => setSelectedCountry(country)}
+              onClick={() => handleButtonCountry(country)}
             />
           ))
         )}
